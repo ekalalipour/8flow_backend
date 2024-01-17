@@ -9,7 +9,7 @@
 - **Update**: Modify existing cupcake details to keep up with changes in recipes, pricing, or any other attributes.
 - **Delete**: Remove cupcakes from the inventory, useful for discontinuing certain varieties or managing stock.
   
-This API is built using the Node.js and Express.js ecosystem, ensuring a fast and scalable solution for the cupcake store's backend needs.  
+This API is built using the **Node.js** and **Express.js** ecosystem, ensuring a fast and scalable solution for the cupcake store's backend needs.  
 
 ## Installation
 ### Follow these steps to install and set up the project:
