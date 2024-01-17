@@ -59,9 +59,9 @@ Detailed list of available API endpoints:
 - **Response**: Confirmation message if the deletion is successful.
 
 # Testing
-  The Cupcake Store API includes a comprehensive suite of automated tests, developed using Jest and Supertest.--  
-  Jest is utilized for its powerful testing capabilities and ease of use, while Supertest is employed for testing HTTP endpoints, ensuring each API route behaves as expected.--   
-
+  The Cupcake Store API includes a comprehensive suite of automated tests, developed using Jest and Supertest.  
+  Jest is utilized for its powerful testing capabilities and ease of use, while Supertest is employed for testing HTTP endpoints, ensuring each API route behaves as expected.     
+    
   These tests cover various functionalities of the API, verifying that all endpoints respond correctly under a range of conditions, including both typical use cases and edge cases.
 ### Run the following command:
 ```
