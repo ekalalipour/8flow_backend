@@ -1,10 +1,11 @@
 const db = require('../data/db');
 
+// Handler for adding a new cupcake
 const addCupcake = (req, res, next) => {
   try {
     const {name, price, description, ingredients} = req.body;
 
-    // Validation for mandatory fields: name and priceasic Validation
+    // Validation for mandatory fields: name and price
     if (!name || typeof name !== 'string' || !price || typeof price !== 'number') {
       return res.status(405).json({error: 'Invalid input data'})
     }
@@ -15,12 +16,13 @@ const addCupcake = (req, res, next) => {
     return res.status(405).json({ error: 'Invalid input data'});
     }
 
+      // Add cupcake to database and return the added cupcake
     const newCupcake = {name, price, description, ingredients };
     const addedCupcake = db.addCupcake(newCupcake);
     res.status(201).json(addedCupcake)
 
   } catch(err) {
-      console.error(err);
+      console.log(err);
         return next({
           log: 'Express error handler caught error in cupcakeController in addCupcake',
           status: 500,
@@ -29,13 +31,14 @@ const addCupcake = (req, res, next) => {
   }
 };
 
+// Handler for retrieving all cupcakes
 const getCupcakes = (req, res, next) => {
   try {
     const result = db.getCupcakes();
     res.status(200).json({message: "Succesful operation", data: result});
 
   } catch(err) {
-      console.error(err);
+      console.log(err);
         return next({
           log: 'Express error handler caught error in cupcakeController in getCupcake',
           status: 500,
@@ -44,10 +47,12 @@ const getCupcakes = (req, res, next) => {
   }
 };
 
+// Handler for retrieving a cupcake by its ID
 const getCupcakeById = (req, res, next) => {
   try {
+    // Parse the ID from request parameters and validate it
     const id = parseInt(req.params.cupcakeId);
-
+    
     const cupcake = db.getCupcakeById(id);
 
     // Check if Id is a valid integer
@@ -62,7 +67,7 @@ const getCupcakeById = (req, res, next) => {
     res.status(200).json({message: "Succesful operation", data: cupcake})
 
   } catch(err) {
-      console.error(err);
+      console.log(err);
         return next({
           log: 'Express error handler caught error in cupcakeController in getCupcakeById',
           status: 500,
@@ -71,11 +76,16 @@ const getCupcakeById = (req, res, next) => {
   }
 };
 
+// Handler for updating a cupcake's details by its ID
 const updateCupcake = (req, res, next) => {
   try{
     const cupcakeId = parseInt(req.params.cupcakeId);
-    const cupcakeData = req.body;
     const {name, price, description, ingredients} = req.body;
+
+    // Check if Id is a valid integer
+    if (isNaN(cupcakeId)){
+      return res.status(400).json({message: "Invalid ID supplied"})
+    }
 
     // Validation for mandatory fields: name and price
     if (!name || typeof name !== 'string' || !price || typeof price !== 'number') {
@@ -88,12 +98,8 @@ const updateCupcake = (req, res, next) => {
     return res.status(405).json({ error: 'Validation exception'});
     }
 
-    // Check if Id is a valid integer
-    if (isNaN(cupcakeId)){
-      return res.status(400).json({message: "Invalid ID supplied"})
-    }
-
-    const result = db.updateCupcake(cupcakeId, cupcakeData);
+    const updatedCupcake = { name, price, description, ingredients };
+    const result = db.updateCupcake(cupcakeId, updatedCupcake);
 
     // Check if the cupcake was found and updated
     if(!result) {
@@ -103,7 +109,7 @@ const updateCupcake = (req, res, next) => {
     res.status(200).json({message: "Succesful operation", data: result});
 
   } catch(err) {
-      console.error(err);
+      console.log(err);
         return next({
           log: 'Express error handler caught error in cupcakeController in updateCupcake',
           status: 500,
@@ -112,6 +118,7 @@ const updateCupcake = (req, res, next) => {
   }
 };
 
+// Handler for deleting a cupcake by its ID
 const deleteCupcake = (req, res, next) => {
   try {
     const cupcakeId = parseInt(req.params.cupcakeId);
@@ -130,7 +137,7 @@ const deleteCupcake = (req, res, next) => {
     return res.status(200).json({"message": "Succesful operation"})
 
   } catch(err) {
-      console.error(err);
+      console.log(err);
         return next({
           log: 'Express error handler caught error in cupcakeController in deleteCupcake',
           status: 500,

@@ -1,5 +1,5 @@
 const express = require('express');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3005;
 const app = express();
 const cupcakeRoutes = require('./routes/cupcakeRoutes');
 
@@ -9,6 +9,7 @@ app.use(express.json());
 
 app.use('/cupcake', cupcakeRoutes);
 
+// Global error handling middleware
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: `${err} Express error handler caught unknown middleware error`,
@@ -20,7 +21,14 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
+// Server startup logic
+// Checks if this module is the main module and starts the server
+// This prevents the server from auto-starting when being 'require'd as a module
+if (require.main === module) {
+    app.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}...`)
+  });
+};
 
-app.listen(PORT, ()=>{
-  console.log(`Server is running on ${PORT}...`)
-});
+// Exporting the Express app for testing
+module.exports = app;
