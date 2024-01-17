@@ -1,6 +1,6 @@
 # Cupcake Store API
 ## Description
-#### The Cupcake Store API is a versatile and user-friendly interface designed to manage a virtual cupcake store's inventory and orders. This RESTful API allows clients to interact with a server to perform a variety of tasks such as adding new cupcake varieties to the store, retrieving details about available cupcakes, updating existing cupcake information, and deleting cupcakes from the store's inventory.
+  The Cupcake Store API is a versatile and user-friendly interface designed to manage a virtual cupcake store's inventory and orders.  This RESTful API allows clients to interact with a server to perform a variety of tasks such as adding new cupcake varieties to the store, retrieving details about available cupcakes, updating existing cupcake information, and deleting cupcakes from the store's inventory.
 
 ### Key features and capabilities of the API include:
 
@@ -9,7 +9,7 @@
 - **Update**: Modify existing cupcake details to keep up with changes in recipes, pricing, or any other attributes.
 - **Delete**: Remove cupcakes from the inventory, useful for discontinuing certain varieties or managing stock.
 
-#### This API is built using the Node.js and Express.js ecosystem, ensuring a fast and scalable solution for the cupcake store's backend needs. 
+  This API is built using the Node.js and Express.js ecosystem, ensuring a fast and scalable solution for the cupcake store's backend needs.  
 
 ## Installation
 ### Follow these steps to install and set up the project:
